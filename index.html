@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Syllabi</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+  :root {
+    --bg:       #fef9c3;
+    --bg2:      #fdf6a3;
+    --blue:     #93c5fd;
+    --blue2:    #60a5fa;
+    --blue3:    #3b82f6;
+    --blueXlt:  rgba(147,197,253,0.18);
+    --glass:    rgba(255,255,255,0.55);
+    --glassBrd: rgba(255,255,255,0.75);
+    --ink:      #1e3a5f;
+    --mid:      #6b8bae;
+    --faint:    #b8cfe8;
+    --coral:    #fb9da0;
+    --sage:     #86efac;
+    --peach:    #fcd9a0;
+    --lav:      #c4b5fd;
+    --shadow:   rgba(100,160,220,0.15);
+  }
+ 
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image:
+      radial-gradient(ellipse at 20% 20%, rgba(147,197,253,0.3) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 80%, rgba(254,249,195,0.8) 0%, transparent 60%),
+      radial-gradient(ellipse at 60% 10%, rgba(196,181,253,0.2) 0%, transparent 50%);
+  }
+ 
+  ::-webkit-scrollbar { width: 0; height: 0; }
+ 
+  /* Phone shell */
+  .phone {
+    width: 390px;
+    height: 844px;
+    border-radius: 52px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(145deg, rgba(255,255,255,0.7), rgba(254,249,195,0.5));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1.5px solid rgba(255,255,255,0.85);
+    box-shadow:
+      0 32px 80px rgba(100,160,220,0.2),
+      0 8px 32px rgba(100,160,220,0.12),
+      inset 0 1px 0 rgba(255,255,255,0.9);
+  }
+ 
+  /* Glass card */
+  .glass {
+    background: var(--glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glassBrd);
+    box-shadow: 0 4px 20px var(--shadow);
+  }
+ 
+  .glass-sm {
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.8);
+  }
+ 
+  /* Status bar */
+  .statusbar {
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    flex-shrink: 0;
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 400;
+  }
+ 
+  /* Screens */
+  .screen { height: 100%; display: flex; flex-direction: column; overflow: hidden; }
+  .screen--hidden { display: none; }
+ 
+  /* Typography */
+  h1, h2, h3 { font-family: 'DM Serif Display', serif; font-weight: 400; color: var(--ink); }
+  p { color: var(--mid); font-weight: 300; }
+  label { color: var(--mid); font-size: 10px; font-weight: 400; letter-spacing: 1.2px; text-transform: uppercase; display: block; margin-bottom: 6px; }
+ 
+  /* Buttons */
+  .btn-primary {
+    background: linear-gradient(135deg, var(--blue), var(--blue2));
+    border: none;
+    border-radius: 12px;
+    padding: 13px 20px;
+    color: white;
+    font-size: 13px;
+    font-weight: 400;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    width: 100%;
+    letter-spacing: 0.2px;
+    box-shadow: 0 4px 16px rgba(96,165,250,0.35);
+    transition: all 0.18s;
+  }
+  .btn-primary:hover { box-shadow: 0 6px 20px rgba(96,165,250,0.45); transform: translateY(-1px); }
+ 
+  .btn-ghost {
+    background: rgba(255,255,255,0.6);
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 10px;
+    padding: 8px 16px;
+    color: var(--blue3);
+    font-size: 12px;
+    font-weight: 400;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: all 0.18s;
+  }
+ 
+  .btn-icon {
+    background: rgba(255,255,255,0.6);
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 10px;
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    color: var(--mid);
+    font-size: 16px;
+    backdrop-filter: blur(8px);
+  }
+ 
+  /* Inputs */
+  input[type="text"], input[type="date"] {
+    width: 100%;
+    background: rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.9);
+    border-radius: 10px;
+    padding: 11px 14px;
+    color: var(--ink);
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    outline: none;
+    margin-bottom: 12px;
+    backdrop-filter: blur(8px);
+    transition: border 0.2s, box-shadow 0.2s;
+    box-shadow: inset 0 1px 3px rgba(100,160,220,0.08);
+  }
+  input:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(147,197,253,0.25), inset 0 1px 3px rgba(100,160,220,0.08);
+  }
+  input[type="date"] { color-scheme: light; }
+ 
+  /* Toggle tabs */
+  .toggle {
+    display: flex;
+    background: rgba(255,255,255,0.5);
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 10px;
+    padding: 3px;
+    backdrop-filter: blur(10px);
+  }
+  .toggle-btn {
+    flex: 1; border: none; background: transparent; border-radius: 8px;
+    padding: 7px 0; color: var(--mid); font-size: 12px; font-weight: 400;
+    cursor: pointer; transition: all 0.18s; font-family: 'DM Sans', sans-serif;
+  }
+  .toggle-btn.active {
+    background: linear-gradient(135deg, var(--blue), var(--blue2));
+    color: white;
+    box-shadow: 0 3px 10px rgba(96,165,250,0.3);
+  }
+ 
+  /* Event card */
+  .event-card {
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 14px;
+    padding: 13px 16px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.18s;
+    box-shadow: 0 2px 10px rgba(100,160,220,0.08);
+  }
+  .event-card:hover { box-shadow: 0 4px 16px rgba(100,160,220,0.14); transform: translateY(-1px); }
+  .event-card.expanded {
+    background: rgba(255,255,255,0.75);
+    box-shadow: 0 4px 20px rgba(100,160,220,0.18);
+    border-color: rgba(147,197,253,0.6);
+  }
+ 
+  /* Course card */
+  .course-card {
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 16px;
+    padding: 16px 18px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: all 0.18s;
+    box-shadow: 0 3px 12px rgba(100,160,220,0.08);
+  }
+  .course-card:hover { transform: translateY(-1px); box-shadow: 0 5px 18px rgba(100,160,220,0.14); }
+ 
+  /* Bottom nav */
+  .nav {
+    height: 72px;
+    background: rgba(255,255,255,0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255,255,255,0.85);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-bottom: 8px;
+    flex-shrink: 0;
+  }
+  .nav-btn {
+    background: none; border: none;
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    cursor: pointer; padding: 6px 18px; border-radius: 12px;
+    color: var(--faint); transition: all 0.18s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .nav-btn.active { color: var(--blue3); }
+  .nav-btn span { font-size: 9px; font-weight: 400; letter-spacing: 0.5px; text-transform: uppercase; }
+ 
+  /* Sheet modal */
+  .sheet-overlay {
+    position: absolute; inset: 0;
+    background: rgba(30,58,95,0.2);
+    backdrop-filter: blur(4px);
+    z-index: 200;
+    display: flex; align-items: flex-end;
+    animation: fadeIn 0.2s ease;
+  }
+  .sheet-body {
+    width: 100%;
+    background: rgba(255,255,255,0.82);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    border: 1px solid rgba(255,255,255,0.9);
+    border-radius: 24px 24px 0 0;
+    border-bottom: none;
+    max-height: 90%;
+    display: flex; flex-direction: column;
+    animation: sheetUp 0.32s cubic-bezier(0.32,0.72,0,1);
+    box-shadow: 0 -8px 40px rgba(100,160,220,0.15);
+  }
+  .sheet-header {
+    padding: 16px 24px 14px;
+    border-bottom: 1px solid rgba(147,197,253,0.2);
+    flex-shrink: 0;
+  }
+  .sheet-scroll { flex: 1; overflow-y: auto; padding: 20px 24px 48px; }
+ 
+  /* Calendar grid */
+  .cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 3px;
+  }
+  .cal-day-name {
+    text-align: center; color: var(--faint);
+    font-size: 10px; font-weight: 400; padding: 4px 0; letter-spacing: 0.6px;
+  }
+  .cal-day {
+    height: 40px; border-radius: 10px; border: 1.5px solid transparent;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    cursor: pointer; gap: 3px; transition: all 0.15s;
+    font-size: 12px; font-weight: 300; color: var(--faint);
+  }
+  .cal-day.has-ev { color: var(--ink); font-weight: 400; }
+  .cal-day.selected {
+    background: rgba(147,197,253,0.2);
+    border-color: rgba(147,197,253,0.6);
+    color: var(--ink);
+  }
+  .cal-day.today {
+    background: linear-gradient(135deg, var(--blue), var(--blue2));
+    border-color: transparent;
+    color: white;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(96,165,250,0.35);
+  }
+ 
+  /* Pill chips */
+  .chip {
+    background: rgba(255,255,255,0.6);
+    border: 1px solid rgba(255,255,255,0.85);
+    border-radius: 8px; padding: 6px 14px;
+    font-size: 12px; font-weight: 300; font-family: 'DM Sans', sans-serif;
+    color: var(--mid); cursor: pointer; transition: all 0.15s;
+    backdrop-filter: blur(8px);
+  }
+  .chip.active {
+    background: linear-gradient(135deg, var(--blue), var(--blue2));
+    border-color: transparent; color: white;
+    box-shadow: 0 3px 10px rgba(96,165,250,0.3);
+  }
+ 
+  /* Color swatch */
+  .swatch {
+    width: 30px; height: 30px; border-radius: 50%;
+    cursor: pointer; transition: all 0.15s;
+    outline: 3px solid transparent;
+    outline-offset: 3px;
+  }
+  .swatch.selected { outline-color: var(--blue2); }
+ 
+  /* Upload zone */
+  .upload-zone {
+    flex: 1;
+    border: 1.5px dashed var(--faint);
+    border-radius: 20px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    cursor: pointer; transition: all 0.2s; gap: 12px;
+    background: rgba(255,255,255,0.35);
+    backdrop-filter: blur(8px);
+  }
+  .upload-zone.drag {
+    border-color: var(--blue);
+    background: rgba(147,197,253,0.12);
+    box-shadow: 0 0 0 4px rgba(147,197,253,0.15);
+  }
+ 
+  /* Parsing steps */
+  .step-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 14px; border-radius: 12px;
+    transition: all 0.4s; opacity: 0.25;
+    border: 1px solid transparent;
+  }
+  .step-row.done { opacity: 1; background: rgba(147,197,253,0.1); border-color: rgba(147,197,253,0.2); }
+  .step-row.active { opacity: 1; background: rgba(255,255,255,0.5); border-color: rgba(255,255,255,0.8); backdrop-filter: blur(8px); }
+  .step-dot {
+    width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0;
+    border: 1.5px solid var(--faint);
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s; font-size: 10px;
+  }
+  .step-dot.done { background: linear-gradient(135deg, var(--blue), var(--blue2)); border-color: transparent; color: white; }
+  .step-dot.active { border-color: var(--blue); }
+ 
+  /* Spinner */
+  .spinner {
+    width: 48px; height: 48px; border-radius: 50%;
+    border: 2px solid rgba(147,197,253,0.3);
+    border-top-color: var(--blue2);
+    animation: spin 0.9s linear infinite;
+  }
+ 
+  /* Busy banner */
+  .busy-banner {
+    background: rgba(251,157,160,0.12);
+    border: 1px solid rgba(251,157,160,0.4);
+    backdrop-filter: blur(10px);
+    border-radius: 14px;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+    display: flex; align-items: flex-start; gap: 12px;
+  }
+ 
+  /* GCal button */
+  a.gcal-btn {
+    background: rgba(147,197,253,0.2);
+    border: 1px solid rgba(147,197,253,0.5);
+    border-radius: 7px;
+    padding: 4px 10px;
+    color: var(--blue3);
+    font-size: 10px;
+    font-weight: 400;
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+    white-space: nowrap;
+    backdrop-filter: blur(6px);
+    transition: all 0.15s;
+  }
+ 
+  @keyframes fadeIn   { from{opacity:0} to{opacity:1} }
+  @keyframes sheetUp  { from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes spin     { to{transform:rotate(360deg)} }
+  @keyframes fadeUp   { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes popIn    { from{opacity:0;transform:scale(0.95)} to{opacity:1;transform:scale(1)} }
+</style>
+</head>
+<body>
+<div class="phone" id="app">
+  <!-- Status bar -->
+  <div class="statusbar">
+    <span>9:41</span>
+    <div style="display:flex;gap:6px;align-items:center">
+      <svg width="15" height="11" viewBox="0 0 15 11" fill="none"><rect x="0" y="4" width="2.5" height="7" rx="1" fill="#1e3a5f"/><rect x="3.5" y="2.5" width="2.5" height="8.5" rx="1" fill="#1e3a5f"/><rect x="7" y="1" width="2.5" height="10" rx="1" fill="#1e3a5f"/><rect x="10.5" y="0" width="2.5" height="11" rx="1" fill="#1e3a5f" opacity="0.3"/></svg>
+      <svg width="16" height="11" viewBox="0 0 22 11" fill="none"><rect x="0" y="0.5" width="18" height="10" rx="2" stroke="#1e3a5f" stroke-width="1.2"/><path d="M20 3.5v4" stroke="#1e3a5f" stroke-width="2" stroke-linecap="round" opacity="0.4"/><rect x="1.5" y="2" width="13" height="7" rx="1" fill="#1e3a5f" opacity="0.7"/></svg>
+    </div>
+  </div>
+ 
+  <!-- Content area -->
+  <div style="flex:1;overflow:hidden;position:relative" id="content">
+ 
+    <!-- UPLOAD SCREEN -->
+    <div class="screen" id="screen-upload">
+      <div style="padding:24px 28px 16px">
+        <p style="font-size:10px;letter-spacing:1.3px;text-transform:uppercase;color:var(--mid);margin-bottom:8px;font-weight:400">Syllabi</p>
+        <h1 style="font-size:28px;line-height:1.25;color:var(--ink)">Turn your syllabi<br/>into a <em style="color:var(--blue3)">clear schedule</em></h1>
+        <p style="font-size:13px;margin-top:10px;line-height:1.65;font-weight:300">Upload a PDF and we'll pull out every deadline automatically.</p>
+      </div>
+ 
+      <div style="padding:0 24px;flex:1">
+        <div class="upload-zone" id="upload-zone">
+          <div style="width:54px;height:54px;border-radius:16px;background:rgba(147,197,253,0.2);border:1px solid rgba(147,197,253,0.4);display:flex;align-items:center;justify-content:center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          </div>
+          <div style="text-align:center">
+            <p id="upload-label" style="color:var(--ink);font-size:14px;font-weight:400">Drop your syllabus</p>
+            <p style="font-size:11px;margin-top:3px;font-weight:300">PDF or DOCX · tap to browse</p>
+          </div>
+          <input type="file" id="file-input" accept=".pdf,.docx" style="display:none"/>
+        </div>
+      </div>
+ 
+      <div style="padding:16px 24px 8px">
+        <button class="btn-primary" id="demo-btn">Try with a demo syllabus</button>
+      </div>
+ 
+      <div style="padding:0 24px 28px">
+        <p style="font-size:10px;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:10px;font-weight:400;color:var(--mid)">Added courses</p>
+        <div id="added-courses" style="display:flex;gap:8px;flex-wrap:wrap"></div>
+      </div>
+    </div>
+ 
+    <!-- PARSING SCREEN -->
+    <div class="screen screen--hidden" id="screen-parsing">
+      <div style="height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 36px">
+        <div class="spinner" style="margin-bottom:36px"></div>
+        <h2 style="font-size:22px;text-align:center;margin-bottom:8px">Reading your syllabus</h2>
+        <p id="parse-filename" style="font-size:12px;margin-bottom:36px;font-weight:300"></p>
+        <div id="parse-steps" style="width:100%;display:flex;flex-direction:column;gap:8px"></div>
+      </div>
+    </div>
+ 
+    <!-- CALENDAR SCREEN -->
+    <div class="screen screen--hidden" id="screen-calendar">
+ 
+      <!-- CALENDAR TAB -->
+      <div style="height:100%;display:flex;flex-direction:column;overflow:hidden" id="tab-calendar">
+        <div style="padding:20px 24px 12px;flex-shrink:0">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start">
+            <div>
+              <p id="cal-month-label" style="font-size:10px;letter-spacing:1.3px;text-transform:uppercase;margin-bottom:4px;font-weight:400;color:var(--mid)"></p>
+              <h2 style="font-size:24px">My Schedule</h2>
+            </div>
+            <button class="btn-ghost" id="cal-add-btn" style="margin-top:4px">+ Add</button>
+          </div>
+          <div class="toggle" style="margin-top:14px">
+            <button class="toggle-btn active" data-view="list">List</button>
+            <button class="toggle-btn" data-view="month">Month</button>
+          </div>
+        </div>
+ 
+        <!-- LIST VIEW -->
+        <div style="flex:1;display:flex;flex-direction:column;overflow:hidden" id="view-list">
+          <div style="padding:0 24px 10px;flex-shrink:0">
+            <div class="toggle" style="gap:4px">
+              <button class="toggle-btn active" data-tab="all">All</button>
+              <button class="toggle-btn" data-tab="upcoming">Upcoming</button>
+              <button class="toggle-btn" data-tab="exams">Exams</button>
+            </div>
+          </div>
+          <div style="flex:1;overflow-y:auto;padding:0 24px 8px" id="event-list">
+            <div class="busy-banner">
+              <div style="width:7px;height:7px;border-radius:50%;background:var(--coral);flex-shrink:0;margin-top:3px"></div>
+              <div>
+                <p style="color:var(--coral);font-size:11px;font-weight:500;margin-bottom:2px">Busy week ahead</p>
+                <p style="font-size:11px;line-height:1.5;font-weight:300">Mar 18–21 has a midterm and paper due. Plan early.</p>
+              </div>
+            </div>
+          </div>
+          <div style="padding:8px 24px 12px;flex-shrink:0">
+            <button class="btn-primary" id="export-all-list" style="background:rgba(255,255,255,0.6);color:var(--blue3);box-shadow:none;border:1px solid rgba(147,197,253,0.5)">Export all to Google Calendar</button>
+          </div>
+        </div>
+ 
+        <!-- MONTH VIEW -->
+        <div style="flex:1;display:flex;flex-direction:column;overflow:hidden;display:none" id="view-month">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:0 24px 12px;flex-shrink:0">
+            <button class="btn-icon" id="prev-month">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <span id="month-nav-label" style="font-size:14px;color:var(--ink);font-weight:400"></span>
+            <button class="btn-icon" id="next-month">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+          <div style="margin:0 20px;padding:14px 10px;border-radius:18px" class="glass">
+            <div class="cal-grid" id="day-names"></div>
+            <div class="cal-grid" id="cal-cells" style="margin-top:4px"></div>
+          </div>
+          <div id="cal-legend" style="display:flex;justify-content:center;gap:14px;padding:10px 0 4px;flex-wrap:wrap"></div>
+          <div style="flex:1;overflow-y:auto;padding:4px 24px 8px" id="day-detail">
+            <p style="color:var(--faint);font-size:11px;font-weight:300;text-align:center;margin-top:14px">Select a date to view events</p>
+          </div>
+          <div style="padding:8px 24px 12px;flex-shrink:0">
+            <button class="btn-primary" id="export-all-month" style="background:rgba(255,255,255,0.6);color:var(--blue3);box-shadow:none;border:1px solid rgba(147,197,253,0.5)">Export all to Google Calendar</button>
+          </div>
+        </div>
+      </div>
+ 
+      <!-- COURSES TAB -->
+      <div style="height:100%;display:flex;flex-direction:column;overflow:hidden;display:none" id="tab-courses">
+        <div style="padding:20px 24px 12px;flex-shrink:0" id="courses-header"></div>
+        <div style="flex:1;overflow-y:auto;padding:0 24px 16px" id="courses-body"></div>
+      </div>
+ 
+      <!-- Bottom nav -->
+      <div class="nav">
+        <button class="nav-btn" data-nav="upload">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          <span>Upload</span>
+        </button>
+        <button class="nav-btn active" data-nav="calendar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span>Schedule</span>
+        </button>
+        <button class="nav-btn" data-nav="courses">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+          <span>Courses</span>
+        </button>
+      </div>
+    </div>
+ 
+  </div><!-- /content -->
+ 
+  <!-- SHEETS (appended dynamically) -->
+</div><!-- /phone -->
+ 
+<script>
+// ── DATA ──
+const PALETTE = ["#93c5fd","#fb9da0","#86efac","#fcd9a0","#c4b5fd","#f9a8d4","#6ee7b7","#fda4af"];
+const COLORS  = { blue:"#93c5fd", coral:"#fb9da0", sage:"#86efac", peach:"#fcd9a0", lav:"#c4b5fd" };
+const TYPE_LABEL = { exam:"Exam", homework:"Homework", paper:"Paper", project:"Project", quiz:"Quiz" };
+const TYPE_LIST  = ["homework","exam","quiz","paper","project"];
+const MON      = ["","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const FULL_MON = ["","January","February","March","April","May","June","July","August","September","October","November","December"];
+const DAYS     = ["Su","Mo","Tu","We","Th","Fr","Sa"];
+const STEPS    = ["Reading your syllabus","Finding course details","Extracting deadlines","Spotting exam dates","Organizing everything"];
+ 
+let courses = [
+  { id:1, name:"CS 301",    color:COLORS.blue  },
+  { id:2, name:"ECON 201",  color:COLORS.coral },
+  { id:3, name:"PSYCH 110", color:COLORS.sage  },
+];
+ 
+let events = [
+  { id:1,  course:"CS 301",    title:"Problem Set 3",       type:"homework", date:"Mar 14", day:14, month:3, year:2026, color:COLORS.blue  },
+  { id:2,  course:"ECON 201",  title:"Midterm Exam",         type:"exam",     date:"Mar 18", day:18, month:3, year:2026, color:COLORS.coral },
+  { id:3,  course:"PSYCH 110", title:"Research Paper Draft", type:"paper",    date:"Mar 21", day:21, month:3, year:2026, color:COLORS.sage  },
+  { id:4,  course:"CS 301",    title:"Project Milestone 2",  type:"project",  date:"Mar 25", day:25, month:3, year:2026, color:COLORS.blue  },
+  { id:5,  course:"ECON 201",  title:"Weekly Quiz 7",        type:"quiz",     date:"Mar 28", day:28, month:3, year:2026, color:COLORS.coral },
+  { id:6,  course:"PSYCH 110", title:"Final Paper",          type:"paper",    date:"Apr 3",  day:3,  month:4, year:2026, color:COLORS.sage  },
+  { id:7,  course:"CS 301",    title:"Final Project",        type:"project",  date:"Apr 10", day:10, month:4, year:2026, color:COLORS.blue  },
+  { id:8,  course:"ECON 201",  title:"Final Exam",           type:"exam",     date:"Apr 22", day:22, month:4, year:2026, color:COLORS.coral },
+  { id:9,  course:"PSYCH 110", title:"Presentation",         type:"project",  date:"Apr 28", day:28, month:4, year:2026, color:COLORS.sage  },
+  { id:10, course:"CS 301",    title:"HW 4",                 type:"homework", date:"May 5",  day:5,  month:5, year:2026, color:COLORS.blue  },
+  { id:11, course:"ECON 201",  title:"Term Paper",           type:"paper",    date:"May 12", day:12, month:5, year:2026, color:COLORS.coral },
+];
+ 
+let state = {
+  screen: "upload",   // upload | parsing | calendar
+  navTab: "calendar", // calendar | courses
+  calView: "list",
+  listTab: "all",
+  calMonth: 3, calYear: 2026,
+  selDay: null,
+  selEvId: null,
+  selCourse: null,
+  fileName: null,
+  parseStep: 0,
+};
+ 
+// ── HELPERS ──
+function gcal(ev) {
+  const p = n => String(n).padStart(2,"0");
+  const d = `${ev.year}${p(ev.month)}${p(ev.day)}`;
+  const params = new URLSearchParams({ action:"TEMPLATE", text:`${ev.course}: ${ev.title}`, dates:`${d}T090000/${d}T100000`, details:`${ev.course} — ${ev.type}` });
+  return `https://calendar.google.com/calendar/render?${params}`;
+}
+function fmt(s) {
+  if (!s) return "";
+  const [,m,d] = s.split("-").map(Number);
+  return `${MON[m]} ${d}`;
+}
+function dot(color, size=8) {
+  return `<div style="width:${size}px;height:${size}px;border-radius:50%;background:${color};flex-shrink:0"></div>`;
+}
+ 
+// ── SCREEN ROUTER ──
+function showScreen(name) {
+  document.querySelectorAll(".screen").forEach(s => s.classList.add("screen--hidden"));
+  const el = document.getElementById(`screen-${name}`);
+  if (el) el.classList.remove("screen--hidden");
+  state.screen = name;
+}
+ 
+// ── UPLOAD SCREEN ──
+function renderUpload() {
+  const el = document.getElementById("added-courses");
+  el.innerHTML = courses.map(c => `
+    <div style="background:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.85);border-radius:10px;padding:6px 12px;display:flex;align-items:center;gap:7px;backdrop-filter:blur(8px)">
+      ${dot(c.color,7)}
+      <span style="color:var(--ink);font-size:12px;font-weight:300">${c.name}</span>
+    </div>`).join("");
+}
+ 
+const uploadZone = document.getElementById("upload-zone");
+const fileInput  = document.getElementById("file-input");
+uploadZone.addEventListener("click", () => fileInput.click());
+uploadZone.addEventListener("dragover", e => { e.preventDefault(); uploadZone.classList.add("drag"); });
+uploadZone.addEventListener("dragleave", () => uploadZone.classList.remove("drag"));
+uploadZone.addEventListener("drop", e => {
+  e.preventDefault(); uploadZone.classList.remove("drag");
+  if (e.dataTransfer.files[0]) startWithFile(e.dataTransfer.files[0].name);
+});
+fileInput.addEventListener("change", e => { if (e.target.files[0]) startWithFile(e.target.files[0].name); });
+document.getElementById("demo-btn").addEventListener("click", () => startWithFile("CS301_syllabus.pdf"));
+ 
+function startWithFile(name) {
+  state.fileName = name;
+  document.getElementById("upload-label").textContent = name;
+  setTimeout(startParsing, 300);
+}
+ 
+// ── PARSING SCREEN ──
+function startParsing() {
+  showScreen("parsing");
+  document.getElementById("parse-filename").textContent = state.fileName;
+  state.parseStep = 0;
+  renderParseSteps();
+  const iv = setInterval(() => {
+    state.parseStep++;
+    renderParseSteps();
+    if (state.parseStep >= STEPS.length) {
+      clearInterval(iv);
+      setTimeout(() => { showScreen("calendar"); renderCalendar(); }, 700);
+    }
+  }, 750);
+}
+ 
+function renderParseSteps() {
+  const el = document.getElementById("parse-steps");
+  el.innerHTML = STEPS.map((s, i) => {
+    const done = i < state.parseStep, act = i === state.parseStep;
+    const cls = done ? "done" : act ? "active" : "";
+    const dotContent = done ? `<svg width="9" height="7" viewBox="0 0 9 7" fill="none"><polyline points="1,3.5 3.5,6 8,1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>` : "";
+    return `<div class="step-row ${cls}">
+      <div class="step-dot ${done?"done":act?"active":""}">${dotContent}</div>
+      <span style="font-size:13px;font-weight:${done||act?400:300};color:${done?"var(--ink)":act?"var(--ink)":"var(--mid)"}">${s}</span>
+    </div>`;
+  }).join("");
+}
+ 
+// ── CALENDAR SCREEN ──
+function renderCalendar() {
+  // month label
+  document.getElementById("cal-month-label").textContent = `${FULL_MON[state.calMonth]} ${state.calYear}`;
+  document.getElementById("month-nav-label").textContent  = `${FULL_MON[state.calMonth]} ${state.calYear}`;
+ 
+  // nav tabs
+  document.querySelectorAll(".nav-btn").forEach(b => {
+    b.classList.toggle("active", b.dataset.nav === state.navTab || (b.dataset.nav === "upload" && state.screen === "upload"));
+  });
+ 
+  // show/hide tabs
+  document.getElementById("tab-calendar").style.display = state.navTab === "calendar" ? "flex" : "none";
+  document.getElementById("tab-courses").style.display  = state.navTab === "courses"  ? "flex" : "none";
+ 
+  if (state.navTab === "calendar") {
+    renderListView();
+    renderMonthView();
+    setCalView(state.calView);
+  }
+  if (state.navTab === "courses") {
+    renderCoursesTab();
+  }
+}
+ 
+// ── LIST VIEW ──
+function renderListView() {
+  const filtered = events.filter(e => {
+    if (state.listTab === "exams") return e.type === "exam" || e.type === "quiz";
+    return true;
+  });
+ 
+  const list = document.getElementById("event-list");
+  // keep banner, replace rest
+  const banner = list.querySelector(".busy-banner");
+  list.innerHTML = "";
+  list.appendChild(banner);
+ 
+  filtered.forEach(ev => {
+    const expanded = ev.id === state.selEvId;
+    const card = document.createElement("div");
+    card.className = "event-card" + (expanded ? " expanded" : "");
+    card.innerHTML = `
+      ${dot(ev.color)}
+      <div style="flex:1;min-width:0">
+        <p style="color:var(--ink);font-size:13px;font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${ev.title}</p>
+        <p style="font-size:11px;margin-top:2px;font-weight:300">${ev.course} · ${TYPE_LABEL[ev.type]}</p>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0">
+        <span style="color:var(--mid);font-size:11px;font-weight:300">${ev.date}</span>
+        ${expanded ? `<a class="gcal-btn" href="${gcal(ev)}" target="_blank">Add to GCal</a>` : ""}
+      </div>`;
+    card.addEventListener("click", () => {
+      state.selEvId = state.selEvId === ev.id ? null : ev.id;
+      renderListView();
+    });
+    list.appendChild(card);
+  });
+ 
+  // tab buttons
+  document.querySelectorAll("[data-tab]").forEach(b => {
+    b.classList.toggle("active", b.dataset.tab === state.listTab);
+    b.onclick = () => { state.listTab = b.dataset.tab; renderListView(); };
+  });
+}
+ 
+// ── MONTH VIEW ──
+function renderMonthView() {
+  // day names
+  const dnames = document.getElementById("day-names");
+  dnames.innerHTML = DAYS.map(d => `<div class="cal-day-name">${d}</div>`).join("");
+ 
+  const first = new Date(state.calYear, state.calMonth-1, 1).getDay();
+  const dim   = new Date(state.calYear, state.calMonth, 0).getDate();
+  const cells = document.getElementById("cal-cells");
+  cells.innerHTML = "";
+ 
+  for (let i=0; i<first; i++) {
+    const blank = document.createElement("div");
+    cells.appendChild(blank);
+  }
+  for (let d=1; d<=dim; d++) {
+    const de = events.filter(e=>e.month===state.calMonth&&e.year===state.calYear&&e.day===d);
+    const isToday = d===7&&state.calMonth===3&&state.calYear===2026;
+    const isSel   = d===state.selDay;
+    const cell = document.createElement("div");
+    cell.className = "cal-day" + (de.length?"  has-ev":"") + (isSel&&!isToday?" selected":"") + (isToday?" today":"");
+    cell.innerHTML = `<span>${d}</span>${de.length?`<div style="display:flex;gap:2px">${de.slice(0,3).map(e=>`<div style="width:4px;height:4px;border-radius:50%;background:${isToday?"rgba(255,255,255,0.7)":e.color}"></div>`).join("")}</div>`:""}`;
+    cell.addEventListener("click", () => {
+      state.selDay = state.selDay === d ? null : d;
+      renderMonthView();
+    });
+    cells.appendChild(cell);
+  }
+ 
+  // legend
+  const legend = document.getElementById("cal-legend");
+  legend.innerHTML = courses.map(c => `<div style="display:flex;align-items:center;gap:5px">${dot(c.color,6)}<span style="color:var(--mid);font-size:10px;font-weight:300">${c.name}</span></div>`).join("");
+ 
+  // day detail
+  const detail = document.getElementById("day-detail");
+  const dEvs = state.selDay ? events.filter(e=>e.day===state.selDay&&e.month===state.calMonth&&e.year===state.calYear) : [];
+  if (state.selDay && dEvs.length > 0) {
+    detail.innerHTML = `
+      <p style="color:var(--mid);font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;font-weight:400">${MON[state.calMonth]} ${state.selDay} · ${dEvs.length} event${dEvs.length>1?"s":""}</p>
+      ${dEvs.map(ev=>`
+        <div style="background:rgba(255,255,255,0.55);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.8);border-radius:14px;padding:13px 16px;margin-bottom:8px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 10px rgba(100,160,220,0.08)">
+          ${dot(ev.color)}
+          <div style="flex:1"><p style="color:var(--ink);font-size:13px;font-weight:400">${ev.title}</p><p style="font-size:11px;margin-top:2px;font-weight:300">${ev.course}</p></div>
+          <a class="gcal-btn" href="${gcal(ev)}" target="_blank">GCal</a>
+        </div>`).join("")}`;
+    detail.style.animation = "fadeUp 0.2s ease";
+  } else if (state.selDay) {
+    detail.innerHTML = `<p style="color:var(--faint);font-size:12px;font-weight:300;text-align:center;margin-top:16px">No events this day</p>`;
+  } else {
+    detail.innerHTML = `<p style="color:var(--faint);font-size:11px;font-weight:300;text-align:center;margin-top:14px">Select a date to view events</p>`;
+  }
+ 
+  // month nav label
+  document.getElementById("month-nav-label").textContent = `${FULL_MON[state.calMonth]} ${state.calYear}`;
+  document.getElementById("cal-month-label").textContent  = `${FULL_MON[state.calMonth]} ${state.calYear}`;
+}
+ 
+function setCalView(v) {
+  state.calView = v;
+  document.getElementById("view-list").style.display  = v==="list"  ? "flex" : "none";
+  document.getElementById("view-month").style.display = v==="month" ? "flex" : "none";
+  document.querySelectorAll("[data-view]").forEach(b => b.classList.toggle("active", b.dataset.view === v));
+}
+ 
+document.querySelectorAll("[data-view]").forEach(b => b.addEventListener("click", () => setCalView(b.dataset.view)));
+document.getElementById("prev-month").addEventListener("click", () => {
+  if (state.calMonth===1) { state.calMonth=12; state.calYear--; } else state.calMonth--;
+  state.selDay = null; renderMonthView();
+});
+document.getElementById("next-month").addEventListener("click", () => {
+  if (state.calMonth===12) { state.calMonth=1; state.calYear++; } else state.calMonth++;
+  state.selDay = null; renderMonthView();
+});
+ 
+// export all
+[document.getElementById("export-all-list"), document.getElementById("export-all-month")].forEach(btn => {
+  btn.addEventListener("click", () => events.forEach((ev,i)=>setTimeout(()=>window.open(gcal(ev),"_blank"),i*250)));
+});
+ 
+// ── COURSES TAB ──
+function renderCoursesTab() {
+  const header = document.getElementById("courses-header");
+  const body   = document.getElementById("courses-body");
+ 
+  if (state.selCourse) {
+    const c = courses.find(x=>x.id===state.selCourse);
+    const cEvs = events.filter(e=>e.course===c.name);
+    header.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:flex-start">
+        <div>
+          <button onclick="state.selCourse=null;renderCalendar()" style="background:none;border:none;color:var(--mid);font-size:12px;cursor:pointer;padding:0 0 10px;font-family:'DM Sans',sans-serif;display:flex;align-items:center;gap:4px">← Back</button>
+          <div style="display:flex;align-items:center;gap:8px">${dot(c.color,9)}<h2 style="font-size:20px">${c.name}</h2></div>
+          <p style="font-size:12px;margin-top:3px;font-weight:300">${cEvs.length} deadline${cEvs.length!==1?"s":""}</p>
+        </div>
+        <button class="btn-ghost" onclick="openDeadlineSheet('${c.name}')" style="margin-top:20px">+ Add</button>
+      </div>`;
+    body.innerHTML = cEvs.length ? cEvs.map(ev=>`
+      <div class="event-card" style="pointer-events:none">
+        ${dot(ev.color)}
+        <div style="flex:1"><p style="color:var(--ink);font-size:13px;font-weight:400">${ev.title}</p><p style="font-size:11px;margin-top:2px;font-weight:300">${TYPE_LABEL[ev.type]}</p></div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">
+          <span style="color:var(--mid);font-size:11px;font-weight:300">${ev.date}</span>
+          <a class="gcal-btn" href="${gcal(ev)}" target="_blank" style="pointer-events:all">GCal</a>
+        </div>
+      </div>`).join("") :
+      `<div style="text-align:center;padding:48px 0">
+        <p style="color:var(--faint);font-size:13px;font-weight:300;margin-bottom:16px">No deadlines yet.</p>
+        <button class="btn-ghost" onclick="openDeadlineSheet('${c.name}')">Add first deadline</button>
+      </div>`;
+  } else {
+    header.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:flex-end">
+        <div>
+          <p style="font-size:10px;letter-spacing:1.3px;text-transform:uppercase;color:var(--mid);margin-bottom:4px;font-weight:400">My courses</p>
+          <h2 style="font-size:24px">Courses</h2>
+        </div>
+        <button class="btn-ghost" onclick="openCourseSheet()">+ Add</button>
+      </div>`;
+    body.innerHTML = courses.length ? courses.map(c=>{
+      const cnt = events.filter(e=>e.course===c.name).length;
+      return `<div class="course-card" onclick="state.selCourse=${c.id};renderCalendar()">
+        ${dot(c.color,10)}
+        <div style="flex:1">
+          <p style="color:var(--ink);font-size:14px;font-weight:400">${c.name}</p>
+          <p style="font-size:11px;margin-top:2px;font-weight:300">${cnt} deadline${cnt!==1?"s":""}</p>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="color:var(--faint);font-size:14px">›</span>
+          <button onclick="event.stopPropagation();deleteCourse(${c.id})" style="background:rgba(251,157,160,0.15);border:1px solid rgba(251,157,160,0.4);border-radius:7px;padding:4px 8px;color:var(--coral);font-size:11px;cursor:pointer;font-family:'DM Sans',sans-serif">✕</button>
+        </div>
+      </div>`;
+    }).join("") :
+    `<div style="text-align:center;padding:60px 0"><p style="color:var(--faint);font-size:13px;font-weight:300">No courses added yet.</p></div>`;
+  }
+}
+ 
+function deleteCourse(id) {
+  const c = courses.find(x=>x.id===id);
+  courses = courses.filter(x=>x.id!==id);
+  events  = events.filter(e=>e.course!==c.name);
+  if (state.selCourse===id) state.selCourse=null;
+  renderCalendar();
+}
+ 
+// ── NAV ──
+document.querySelectorAll(".nav-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const key = btn.dataset.nav;
+    if (key==="upload") { showScreen("upload"); renderUpload(); return; }
+    state.navTab = key; state.selCourse = null;
+    showScreen("calendar"); renderCalendar();
+  });
+});
+ 
+// ── ADD BUTTON on calendar header ──
+document.getElementById("cal-add-btn").addEventListener("click", () => openDeadlineSheet(""));
+ 
+// ── SHEETS ──
+function makeSheet(title, subtitle, contentHTML, onSubmit) {
+  const overlay = document.createElement("div");
+  overlay.className = "sheet-overlay";
+  overlay.innerHTML = `
+    <div class="sheet-body">
+      <div class="sheet-header">
+        <div style="width:32px;height:3px;background:rgba(147,197,253,0.4);border-radius:2px;margin:0 auto 16px"></div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div>
+            <p style="font-size:10px;letter-spacing:1.2px;text-transform:uppercase;color:var(--mid);margin-bottom:3px;font-weight:400">${subtitle}</p>
+            <h3 style="font-family:'DM Serif Display',serif;font-size:18px;font-weight:400;color:var(--ink)">${title}</h3>
+          </div>
+          <button class="btn-icon close-sheet" style="background:rgba(255,255,255,0.6)">✕</button>
+        </div>
+      </div>
+      <div class="sheet-scroll">${contentHTML}</div>
+    </div>`;
+  overlay.querySelector(".close-sheet").addEventListener("click", () => overlay.remove());
+  overlay.addEventListener("click", e => { if (e.target===overlay) overlay.remove(); });
+  document.getElementById("content").appendChild(overlay);
+  return overlay;
+}
+ 
+function openDeadlineSheet(prefillCourse) {
+  const courseBtns = courses.map(c => `
+    <button class="chip" data-val="${c.name}" onclick="selectChip(this,'course')"
+      style="${prefillCourse===c.name?"background:linear-gradient(135deg,"+c.color+","+c.color+"dd);color:var(--ink);border-color:"+c.color+"88":""}">
+      ${c.name}
+    </button>`).join("");
+  const typeBtns = TYPE_LIST.map(t => `<button class="chip" data-val="${t}" onclick="selectChip(this,'type')">${TYPE_LABEL[t]}</button>`).join("");
+ 
+  const html = `
+    <label>Title</label>
+    <input type="text" id="dl-title" placeholder="e.g. Problem Set 4"/>
+    <label>Course</label>
+    <div id="dl-course-chips" style="display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap">${courseBtns}</div>
+    <label>Type</label>
+    <div id="dl-type-chips" style="display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap">${typeBtns}</div>
+    <label>Due date</label>
+    <input type="date" id="dl-date" value="2026-03-14"/>
+    <p id="dl-err" style="color:var(--coral);font-size:12px;margin-bottom:8px;display:none"></p>
+    <button class="btn-primary" id="dl-save" style="margin-top:4px">Save deadline</button>`;
+ 
+  const overlay = makeSheet("Add deadline", "New", html);
+ 
+  // pre-select course
+  if (prefillCourse) {
+    const btn = overlay.querySelector(`[data-val="${prefillCourse}"]`);
+    if (btn) { btn.classList.add("active"); btn._group = "course"; }
+  }
+  // pre-select homework type
+  const hw = overlay.querySelector('[data-val="homework"]');
+  if (hw) hw.classList.add("active");
+ 
+  overlay.querySelector("#dl-save").addEventListener("click", () => {
+    const title   = overlay.querySelector("#dl-title").value.trim();
+    const course  = overlay.querySelector(".chip.active[data-val]") && [...overlay.querySelectorAll("#dl-course-chips .chip.active")].map(b=>b.dataset.val)[0];
+    const type    = [...overlay.querySelectorAll("#dl-type-chips .chip.active")].map(b=>b.dataset.val)[0] || "homework";
+    const dateVal = overlay.querySelector("#dl-date").value;
+    const errEl   = overlay.querySelector("#dl-err");
+ 
+    if (!title) { errEl.textContent="Please enter a title"; errEl.style.display="block"; return; }
+    if (!course) { errEl.textContent="Please select a course"; errEl.style.display="block"; return; }
+ 
+    const [y,m,d] = dateVal.split("-").map(Number);
+    const col = courses.find(c=>c.name===course)?.color || "#93c5fd";
+    events.push({ id:Date.now(), course, title, type, date:fmt(dateVal), day:d, month:m, year:y, color:col });
+    overlay.remove();
+    renderCalendar();
+  });
+}
+ 
+function openCourseSheet() {
+  const swatches = PALETTE.map((c,i) => `<div class="swatch${i===0?" selected":""}" style="background:${c}" data-color="${c}" onclick="selectSwatch(this)"></div>`).join("");
+  const html = `
+    <label>Course name</label>
+    <input type="text" id="c-name" placeholder="e.g. BIO 201"/>
+    <label>Color</label>
+    <div id="c-swatches" style="display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap">${swatches}</div>
+    <button class="btn-primary" id="c-save">Add course</button>`;
+ 
+  const overlay = makeSheet("Add course", "New", html);
+  overlay.querySelector("#c-save").addEventListener("click", () => {
+    const name  = overlay.querySelector("#c-name").value.trim();
+    const color = overlay.querySelector(".swatch.selected")?.dataset.color || PALETTE[0];
+    if (!name) return;
+    courses.push({ id:Date.now(), name, color });
+    overlay.remove();
+    renderCalendar(); renderUpload();
+  });
+}
+ 
+window.selectChip = function(btn, group) {
+  const container = btn.closest(`[id]`);
+  container.querySelectorAll(".chip").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+};
+window.selectSwatch = function(el) {
+  document.querySelectorAll(".swatch").forEach(s => s.classList.remove("selected"));
+  el.classList.add("selected");
+};
+window.deleteCourse = deleteCourse;
+window.openDeadlineSheet = openDeadlineSheet;
+window.openCourseSheet = openCourseSheet;
+ 
+// ── INIT ──
+renderUpload();
+</script>
+</body>
+</html>
